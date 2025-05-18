@@ -9,3 +9,14 @@
   <p>Your purchase was successful.</p>
 </body>
 </html>
+<script>
+  fetch("https://your-hosting-url.com/payment-confirmed", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      session_id: new URLSearchParams(window.location.search).get("session_id")
+    })
+  });
+</script>
