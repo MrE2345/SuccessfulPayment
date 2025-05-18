@@ -10,13 +10,13 @@
 </body>
 </html>
 <script>
-  fetch("https://your-hosting-url.com/payment-confirmed", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      session_id: new URLSearchParams(window.location.search).get("session_id")
-    })
+  fetch("http://localhost:5000/payment-confirmed", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    session_id: new URLSearchParams(window.location.search).get("session_id")
+  })
   });
 </script>
