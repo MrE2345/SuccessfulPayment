@@ -2,27 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Redirecting to Stripe...</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="3;url=#" id="metaRedirect" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 100px;
-    }
-  </style>
+  <title>Thank You!</title>
 </head>
 <body>
-  <h1>Redirecting you to a secure payment page...</h1>
-  <p>Please wait. If you're not redirected, <a id="manualLink" href="#">click here</a>.</p>
-
-  <script>
-    const sessionId = new URLSearchParams(window.location.search).get("session_id");
-    const stripeURL = `https://checkout.stripe.com/pay/${sessionId}`;
-
-    document.getElementById("manualLink").href = stripeURL;
-    document.getElementById("metaRedirect").setAttribute("content", `0;url=${stripeURL}`);
-  </script>
+  <h1>✅ Thank you for your payment!</h1>
+  <p>Your purchase was successful. You can now close this page.</p>
 </body>
+<script>
+  // Get session_id from the URL
+  const sessionId = new URLSearchParams(window.location.search).get("session_id");
+
+  if (sessionId) {
+    fetch("https://<your-bot-name>.discloud.app/payment-confirmed", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ session_id: sessionId })
+    }).catch(console.error);
+  }
+</script>
 </html>
