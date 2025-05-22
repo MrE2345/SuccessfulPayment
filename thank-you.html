@@ -6,20 +6,6 @@
 </head>
 <body>
   <h1>✅ Thank you for your payment!</h1>
-  <p>Your purchase was successful. You can now close this page.</p>
+  <p>Your purchase was successful.</p>
 </body>
-<script>
-  // Get session_id from the URL
-  const sessionId = new URLSearchParams(window.location.search).get("session_id");
-
-  if (sessionId) {
-    fetch("https://<your-bot-name>.discloud.app/payment-confirmed", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ session_id: sessionId })
-    }).catch(console.error);
-  }
-</script>
 </html>
